@@ -1,13 +1,13 @@
 #include <iostream>
 
 using namespace std;
-
-void change_positions(int&x , int& y) {
+// Swap two elements 
+void change_pos(int &x , int &y) {
     int temp = x;
     x = y;
     y = temp;
 }
-
+//Check the duplicate of elements
 int duplicate(int numbers[], int begin, int end) {
     for (int i = begin; i < end; i++) {
         if (numbers[i] == numbers[end]) {
@@ -19,6 +19,7 @@ int duplicate(int numbers[], int begin, int end) {
 
 void permutations(int numbers[], int length_of_sequence, int current) {
     if (current == length_of_sequence) {
+        cout << "All possible unique permutation: "<< endl;
         for (int i = 0; i < length_of_sequence; i++) {
             cout << numbers[i] << " ";
         }
@@ -28,16 +29,16 @@ void permutations(int numbers[], int length_of_sequence, int current) {
 
     for (int i = current; i < length_of_sequence; i++) {
         if (duplicate(numbers, current, i) == 0) {
-            change_positions(numbers[i], numbers[current]);
+            change_pos(numbers[i], numbers[current]);
             permutations(numbers, length_of_sequence, current + 1);
-            change_positions(numbers[i], numbers[current]);
+            change_pos(numbers[i], numbers[current]);
         }
     }
 }
 
 int main() {
     int length_of_sequence;
-    cout << "Enter the length :";
+    cout << "Enter the length of numbers :";
     cin >> length_of_sequence;
     
     cout << "Enter the numbers :";
