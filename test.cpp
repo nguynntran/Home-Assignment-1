@@ -1,85 +1,61 @@
 #include <iostream>
-#include <algorithm>
+#include <cmath>
+using namespace std;
 
-void backtrack(int* nums, int size, int start, int** result, int* resultSize, int* temp, bool* used) {
-    if (start == size) {
-        result[*resultSize] = new int[size];
-        std::copy(temp, temp + size, result[*resultSize]);
-        (*resultSize)++;
-        return;
-    }
-
-    for (int i = 0; i < size; i++) {
-        if (used[i] || (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]))
-            continue;
-
-        temp[start] = nums[i];
-        used[i] = true;
-        backtrack(nums, size, start + 1, result, resultSize, temp, used);
-        used[i] = false;
-    }
-}
-
-int** permuteUnique(int* nums, int size, int* returnSize, int** returnColumnSizes) {
-    std::sort(nums, nums + size);  // Sort the numbers to handle duplicates
-
-    int totalPermutations = 1;
-    for (int i = 2; i <= size; i++)
-        totalPermutations *= i;
-
-    int** result = new int*[totalPermutations];
-    int* temp = new int[size];
-    bool* used = new bool[size];
-    for (int i = 0; i < size; i++)
-        used[i] = false;
-
-    *returnSize = 0;
-    backtrack(nums, size, 0, result, returnSize, temp, used);
-
-    *returnColumnSizes = new int[*returnSize];
-    for (int i = 0; i < *returnSize; i++)
-        (*returnColumnSizes)[i] = size;
-
-    delete[] temp;
-    delete[] used;
-
-    return result;
-}
-
-void printPermutations(int** permutations, int numPermutations, int* permutationSize) {
-    for (int i = 0; i < numPermutations; i++) {
-        for (int j = 0; j < permutationSize[i]; j++) {
-            std::cout << permutations[i][j] << " ";
+void bubbleSort(float arr[], int n)
+{
+    int i, j;
+    bool swapped;
+    for (i = 0; i < n - 1; i++) {
+        swapped = false;
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
         }
-        std::cout << std::endl;
+ 
+        // If no two elements were swapped
+        // by inner loop, then break
+        if (swapped == false)
+            break;
     }
 }
 
-void freePermutations(int** permutations, int numPermutations, int* permutationSize) {
-    for (int i = 0; i < numPermutations; i++) {
-        delete[] permutations[i];
-    }
-    delete[] permutations;
-    delete[] permutationSize;
-}
-
-int main() {
-    int n;
-    std:: cin >> n;
-    int* nums = new int [n];
+void Euclid(int arr[][2], int n, int k){
+    float ans[n];
     for (int i = 0; i < n; i++){
-        std:: cin >> nums[i];
+        ans[i] = sqrt(pow((arr[i][0]),2) + pow((arr[i][1]),2));
     }
-    int size = n;
+    float temp[n];
+    for (int i = 0; i < n; i++){
+        temp[i] = ans[i];
+    }
+    bubbleSort(temp, n);
 
-    int** permutations;
-    int numPermutations;
-    int* permutationSize;
-
-    permutations = permuteUnique(nums, size, &numPermutations, &permutationSize);
-
-    printPermutations(permutations, numPermutations, permutationSize);
-    freePermutations(permutations, numPermutations, permutationSize);
-
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < k; j++){
+            if (ans[i] == temp[j]){
+                cout << arr[i][0] <<" "<< arr[i][1];
+            }
+        }
+        cout << endl;
+    }
+}
+int main(){
+    int n,k;
+    cout << "The number of points input: "<< endl;
+    cin >> n;
+    cout << "The number of points you want return: "<< endl;
+    cin >> k;
+    int arr[n][2];
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < 2; j++){
+            cin >> arr[i][j];
+        }
+    }
+    cout << "The " << k <<" point(s) near the origin: " << endl;
+    Euclid(arr, n, k);
     return 0;
+
 }
