@@ -2,6 +2,12 @@
 #include <cmath>
 using namespace std;
 
+void swap(int& x, int& y){
+    const int t = x;
+    x = y;
+    y = t;
+}
+
 void bubbleSort(float arr[], int n)
 {
     int i, j;
