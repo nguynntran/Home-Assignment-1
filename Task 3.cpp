@@ -1,3 +1,14 @@
+/*Task 3
+Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane and an integer k, return the k closest points to the origin (0, 0).
+
+The distance between two points on the X-Y plane is the Euclidean distance 
+
+You may return the answer in any order.
+
+In the first line number of points N and k are given from the keyboard, after that goes N lines of points with x and y coordinate divided by a space
+*/
+
+
 #include <iostream>
 #include <cmath>
 using namespace std;
