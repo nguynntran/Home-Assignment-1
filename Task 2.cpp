@@ -13,6 +13,7 @@ Given two axis-aligned rectangles, return true if they overlap, otherwise return
 using namespace std;
 
 void rectangleoverlap(int rec1[], int rec2[]){
+    // Consider 4 case rectangle can overlap
     if ((rec2[0] >= rec1[2]) || (rec2[1] >= rec1[3]) || (rec1[0] >= rec2[2]) || (rec1[1] >= rec2[3])){
         cout <<"False";
     }

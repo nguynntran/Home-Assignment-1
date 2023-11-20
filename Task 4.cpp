@@ -5,6 +5,7 @@ Given a positive integer n, generate an n x n matrix filled with elements from 1
 #include <iostream>
 using namespace std;
 
+//Function to print the spiral matrix
 void Spiralmatrix(int n){
     int res[n][n];
     for (int i = 0; i < n; i++){

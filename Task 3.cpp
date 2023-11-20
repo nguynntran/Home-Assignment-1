@@ -18,7 +18,7 @@ void swap(int& x, int& y){
     x = y;
     y = t;
 }
-
+// Create the function bubbleSort
 void bubbleSort(float arr[], int n)
 {
     int i, j;
@@ -37,7 +37,7 @@ void bubbleSort(float arr[], int n)
             break;
     }
 }
-
+// Function to print result
 void Euclid(int arr[][2], int n, int k){
     float ans[n];
     for (int i = 0; i < n; i++){
